@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurateur 3D - Famobat</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <h1>Configurateur 3D de Cabanes</h1>
+    
+    <!-- Zone de rendu 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Configuration de la scène 3D
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Créer une cabane basique (cube)
+        const geometry = new THREE.BoxGeometry(2, 2, 2);  // Dimensions (largeur, hauteur, profondeur)
+        const material = new THREE.MeshBasicMaterial({ color: 0x8B4513 });  // Couleur bois
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        // Positionner la caméra
+        camera.position.z = 5;
+
+        // Fonction d'animation
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Faire tourner la cabane
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        }
+
+        // Lancer l'animation
+        animate();
+    </script>
+</body>
+</html>
