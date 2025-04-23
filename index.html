@@ -1,49 +1,175 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Famobat - Charpentes & Cabanes</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Famobat – Charpentes & Cabanes</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
-<script src="script.js"></script>
-<!-- Dans la section où tu veux ajouter le lien -->
-
 <body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fs-3" href="#">Famobat</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#realisations">Réalisations</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <header>
-        <h1>Famobat</h1>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+  <!-- HERO -->
+  <header id="hero" class="py-5 text-center text-white bg-primary">
+    <div class="container">
+      <h1 class="display-4">Experts en charpentes & cabanes</h1>
+      <p class="lead">Conception, fabrication et pose sur mesure.</p>
+      <a href="#services" class="btn btn-light btn-lg mt-3">Nos services</a>
+    </div>
+  </header>
 
-    <section id="services">
-        <h2>Nos Services</h2>
-        <div class="service">
-            <h3>Cabanes sur Mesure</h3>
-            <p>Création de cabanes uniques.</p>
-			<a href="configurator.html">Voir la Cabane 3D</a> <br>
-			<a href="chutes.html">Gérer les Chutes de Bois</a>
-
+  <!-- SERVICES -->
+  <section id="services" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Nos Services</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Conception 3D</h5>
+              <p class="card-text">
+                Modélisation précise de vos structures dans un environnement 3D.
+              </p>
+            </div>
+          </div>
         </div>
-    </section>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Fabrication sur mesure</h5>
+              <p class="card-text">
+                Charpentes, cabanes et ossatures en bois, réalisées dans nos ateliers.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Pose & Montage</h5>
+              <p class="card-text">
+                Installation rapide et soignée de toutes vos structures bois.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-        <h2>Contactez-nous</h2>
-        <form action="https://formspree.io/f/{votre-id}" method="POST">
-            <input type="text" name="name" placeholder="Votre nom" required>
-            <input type="email" name="email" placeholder="Votre email" required>
-            <textarea name="message" placeholder="Votre message..." required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </section>
+  <!-- RÉALISATIONS -->
+  <section id="realisations" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4 text-center">Nos Réalisations</h2>
+      <div class="row g-3">
+        <!-- Exemple de galerie -->
+        <div class="col-sm-6 col-lg-3">
+          <img
+            src="https://via.placeholder.com/400x300"
+            class="img-fluid rounded shadow-sm"
+            alt="Projet 1"
+          />
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <img
+            src="https://via.placeholder.com/400x300"
+            class="img-fluid rounded shadow-sm"
+            alt="Projet 2"
+          />
+        </div>
+        <!-- … -->
+      </div>
+      <div class="text-center mt-4">
+        <a href="configurator.html" class="btn btn-primary me-2">Cabane 3D</a>
+        <a href="chutes.html" class="btn btn-secondary">Gestion des chutes</a>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 Famobat. Tous droits réservés.</p>
-    </footer>
+  <!-- CONTACT -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center">Contactez-nous</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <form id="contactForm" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="name" class="form-label">Nom</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                placeholder="Votre nom"
+                required
+              />
+              <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="Votre email"
+                required
+              />
+              <div class="invalid-feedback">Veuillez entrer une adresse valide.</div>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                id="message"
+                class="form-control"
+                rows="5"
+                placeholder="Votre message"
+                required
+              ></textarea>
+              <div class="invalid-feedback">Votre message ne peut pas être vide.</div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              Envoyer
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- FOOTER -->
+  <footer class="py-4 bg-dark text-white text-center">
+    <div class="container">
+      © 2025 Famobat. Tous droits réservés.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  ></script>
 </body>
 </html>
