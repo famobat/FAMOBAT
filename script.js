@@ -1,14 +1,20 @@
 // script.js
 
-// Quand le formulaire est soumis
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Empêcher l'envoi classique
-
+// Bootstrap form validation
+(() => {
+  'use strict';
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      } else {
+        event.preventDefault();
         alert('Merci ! Votre message a été envoyé.');
-
-        form.reset(); // Réinitialiser le formulaire
+        form.reset();
+      }
+      form.classList.add('was-validated');
     });
-});
+  });
+})();
