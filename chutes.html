@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chutes de Bois – Famobat</title>
+  <title>Gestion des Chutes de Bois – Famobat</title>
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -11,75 +11,137 @@
   <style>
     body { padding: 20px; }
     table { min-width: 300px; }
+    .result { margin-top: 20px; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="mb-4">Gestion des Chutes de Bois</h1>
 
+    <!-- Formulaire d'ajout de chutes détaillé -->
     <form id="formChute" class="row g-3 mb-4">
-      <div class="col-md-5">
-        <input
-          type="number"
-          id="longueur"
-          class="form-control"
-          placeholder="Longueur (m)"
-          step="0.1"
-          min="0.1"
-          required
-        />
-      </div>
-      <div class="col-md-5">
-        <input
-          type="number"
-          id="quantite"
-          class="form-control"
-          placeholder="Quantité"
-          min="1"
-          required
-        />
+      <div class="col-md-3">
+        <label for="essence" class="form-label">Essence</label>
+        <select id="essence" class="form-select" required>
+          <option value="Chêne">Chêne</option>
+          <option value="Pin">Pin</option>
+          <option value="Douglas">Douglas</option>
+          <!-- Ajoutez d'autres essences si besoin -->
+        </select>
       </div>
       <div class="col-md-2">
+        <label for="epaisseur" class="form-label">Épaisseur (cm)</label>
+        <input type="number" id="epaisseur" class="form-control" step="0.1" min="0.5" value="2" required>
+      </div>
+      <div class="col-md-2">
+        <label for="largeur" class="form-label">Largeur (cm)</label>
+        <input type="number" id="largeur" class="form-control" step="0.1" min="5" value="10" required>
+      </div>
+      <div class="col-md-2">
+        <label for="longueur" class="form-label">Longueur (m)</label>
+        <input type="number" id="longueur" class="form-control" step="0.1" min="0.1" value="1" required>
+      </div>
+      <div class="col-md-2">
+        <label for="quantite" class="form-label">Quantité</label>
+        <input type="number" id="quantite" class="form-control" step="1" min="1" value="1" required>
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
         <button class="btn btn-primary w-100" type="submit">Ajouter</button>
       </div>
     </form>
 
+    <!-- Tableau des chutes -->
     <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped align-middle">
         <thead class="table-dark">
           <tr>
+            <th>Essence</th>
+            <th>Épaisseur (cm)</th>
+            <th>Largeur (cm)</th>
             <th>Longueur (m)</th>
             <th>Quantité</th>
+            <th>Volume (m³)</th>
           </tr>
         </thead>
         <tbody id="tbodyChutes"></tbody>
       </table>
     </div>
+
+    <!-- Résultats globaux -->
+    <div class="result">
+      <h4>Résumé</h4>
+      <p>Total volume de chutes : <strong id="totalVolume">0</strong> m³</p>
+      <p>Volume moyen nécessaire par cabane : 
+        <input type="number" id="volCabane" value="2" step="0.1" style="width:80px" /> m³  
+        → Peut fabriquer environ <strong id="nbCabanes">0</strong> cabane(s)
+      </p>
+    </div>
   </div>
 
   <script>
+    // récupère ou initialise
     let chutes = JSON.parse(localStorage.getItem('chutes')) || [];
-    const tbody = document.getElementById('tbodyChutes');
 
+    const tbody = document.getElementById('tbodyChutes'),
+          totalVolEl = document.getElementById('totalVolume'),
+          nbCabanesEl = document.getElementById('nbCabanes'),
+          volCabaneInput = document.getElementById('volCabane');
+
+    // calcul du volume en m3 : (épaisseur(cm)/100) * (largeur(cm)/100) * longueur(m) * quantité
+    function calcVolume(ep, lg, lt, qty) {
+      return (ep/100) * (lg/100) * lt * qty;
+    }
+
+    // affichage
     function render() {
       tbody.innerHTML = '';
-      chutes.forEach(({ longueur, quantite }) => {
+      let totalVol = 0;
+      chutes.forEach(item => {
+        const vol = calcVolume(item.epaisseur, item.largeur, item.longueur, item.quantite);
+        totalVol += vol;
         const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${longueur.toFixed(1)}</td><td>${quantite}</td>`;
+        tr.innerHTML = `
+          <td>${item.essence}</td>
+          <td>${item.epaisseur.toFixed(1)}</td>
+          <td>${item.largeur.toFixed(1)}</td>
+          <td>${item.longueur.toFixed(1)}</td>
+          <td>${item.quantite}</td>
+          <td>${vol.toFixed(3)}</td>
+        `;
         tbody.appendChild(tr);
       });
+      totalVolEl.textContent = totalVol.toFixed(3);
+      updateNbCabanes();
       localStorage.setItem('chutes', JSON.stringify(chutes));
     }
 
+    // met à jour le nombre de cabanes
+    function updateNbCabanes() {
+      const volCab = parseFloat(volCabaneInput.value) || 1;
+      const totalVol = parseFloat(totalVolEl.textContent) || 0;
+      const nb = Math.floor(totalVol / volCab);
+      nbCabanesEl.textContent = nb;
+    }
+
+    // gestion de l'ajout
     document.getElementById('formChute').addEventListener('submit', e => {
       e.preventDefault();
-      const L = parseFloat(document.getElementById('longueur').value);
-      const Q = parseInt(document.getElementById('quantite').value);
-      chutes.push({ longueur: L, quantite: Q });
-      e.target.reset();
+      const item = {
+        essence: document.getElementById('essence').value,
+        epaisseur: parseFloat(document.getElementById('epaisseur').value),
+        largeur: parseFloat(document.getElementById('largeur').value),
+        longueur: parseFloat(document.getElementById('longueur').value),
+        quantite: parseInt(document.getElementById('quantite').value, 10)
+      };
+      chutes.push(item);
       render();
+      e.target.reset();
     });
 
+    // gestion du changement de volume par cabane
+    volCabaneInput.addEventListener('input', updateNbCabanes);
+
+    // affichage au chargement
     render();
   </script>
 </body>
