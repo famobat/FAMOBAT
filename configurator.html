@@ -1,68 +1,48 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Configurateur 3D – Famobat</title>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <style>
-    body { margin: 0; overflow: hidden; }
-    #container { width: 100vw; height: 100vh; }
-    h1 { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); color: #fff; z-index: 1; }
-  </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>body{margin:0;overflow:hidden;}#ui{position:absolute;top:10px;left:10px;z-index:1;background:rgba(255,255,255,0.8);padding:15px;border-radius:8px;}#container{width:100vw;height:100vh;}</style>
 </head>
 <body>
-  <h1>Configurateur 3D de Cabane</h1>
+  <div id="ui" class="shadow">
+    <h5>Dimensions Cabane (m)</h5>
+    <div class="mb-2"><input id="inW" type="number" step="0.1" value="3" class="form-control" placeholder="Largeur" /></div>
+    <div class="mb-2"><input id="inH" type="number" step="0.1" value="2" class="form-control" placeholder="Hauteur" /></div>
+    <div class="mb-2"><input id="inD" type="number" step="0.1" value="2" class="form-control" placeholder="Profondeur" /></div>
+    <button id="btnUpdate" class="btn btn-primary w-100">Mettre à jour</button>
+  </div>
   <div id="container"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('container').appendChild(renderer.domElement);
-
-    // Lumière
-    const light = new THREE.DirectionalLight(0xffffff, 1);
+    const scene = new THREE.Scene(),
+          cam = new THREE.PerspectiveCamera(60, innerWidth/innerHeight, 0.1, 1000),
+          rend = new THREE.WebGLRenderer({antialias:true});
+    rend.setSize(innerWidth, innerHeight);
+    document.getElementById('container').append(rend.domElement);
+    const light = new THREE.DirectionalLight(0xffffff,1);
     light.position.set(5,10,7.5);
     scene.add(light);
-
-    // Sol
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(40, 40),
-      new THREE.MeshStandardMaterial({ color: 0x555555 })
-    );
-    ground.rotation.x = - Math.PI/2;
-    scene.add(ground);
-
-    // Cabane basique
-    const geometry = new THREE.BoxGeometry(3, 2, 2);
-    const material = new THREE.MeshStandardMaterial({ color: 0x8B4513 });
-    const cabin = new THREE.Mesh(geometry, material);
-    scene.add(cabin);
-
-    camera.position.set(5,5,5);
-    camera.lookAt(cabin.position);
-
-    // Contrôles
-    let angle=0;
-    function animate() {
-      requestAnimationFrame(animate);
-      angle += 0.005;
-      cabin.rotation.y = angle;
-      renderer.render(scene, camera);
+    let cabin, geom, mat;
+    function createCabane(w,h,d) {
+      if(cabin) scene.remove(cabin);
+      geom = new THREE.BoxGeometry(w,h,d);
+      mat = new THREE.MeshStandardMaterial({color:0x8B4513});
+      cabin = new THREE.Mesh(geom, mat);
+      scene.add(cabin);
+      cabin.position.y = h/2;
     }
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth/window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    cam.position.set(5,5,5); cam.lookAt(0,1,0);
+    createCabane(3,2,2);
+    document.getElementById('btnUpdate').onclick = ()=>{
+      const w=+inW.value,h=+inH.value,d=+inD.value;
+      createCabane(w,h,d);
+    };
+    window.addEventListener('resize', ()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();rend.setSize(innerWidth,innerHeight);});
+    (function anim(){requestAnimationFrame(anim);cabin.rotation.y+=0.005;rend.render(scene,cam)})();
   </script>
 </body>
 </html>
