@@ -1,79 +1,86 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion des Chutes de Bois - Famobat</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        table, th, td { border: 1px solid black; }
-        th, td { padding: 8px; text-align: left; }
-        button { margin-top: 10px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chutes de Bois – Famobat</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body { padding: 20px; }
+    table { min-width: 300px; }
+  </style>
 </head>
 <body>
-    <h1>Gestion des Chutes de Bois</h1>
-    
-    <!-- Formulaire pour ajouter une chute -->
-    <h2>Ajouter une chute</h2>
-    <form id="formChute">
-        <label for="longueur">Longueur (en mètres) :</label>
-        <input type="number" id="longueur" required step="0.1" min="0.1">
-        <label for="quantite">Quantité :</label>
-        <input type="number" id="quantite" required min="1">
-        <button type="submit">Ajouter</button>
+  <div class="container">
+    <h1 class="mb-4">Gestion des Chutes de Bois</h1>
+
+    <form id="formChute" class="row g-3 mb-4">
+      <div class="col-md-5">
+        <input
+          type="number"
+          id="longueur"
+          class="form-control"
+          placeholder="Longueur (m)"
+          step="0.1"
+          min="0.1"
+          required
+        />
+      </div>
+      <div class="col-md-5">
+        <input
+          type="number"
+          id="quantite"
+          class="form-control"
+          placeholder="Quantité"
+          min="1"
+          required
+        />
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary w-100" type="submit">Ajouter</button>
+      </div>
     </form>
 
-    <h2>Chutes Disponibles</h2>
-    <table id="tableChutes">
-        <thead>
-            <tr>
-                <th>Longueur (m)</th>
-                <th>Quantité</th>
-            </tr>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead class="table-dark">
+          <tr>
+            <th>Longueur (m)</th>
+            <th>Quantité</th>
+          </tr>
         </thead>
-        <tbody>
-            <!-- Les données des chutes seront ajoutées ici -->
-        </tbody>
-    </table>
+        <tbody id="tbodyChutes"></tbody>
+      </table>
+    </div>
+  </div>
 
-    <script>
-        // Récupérer les données des chutes depuis le localStorage
-        let chutes = JSON.parse(localStorage.getItem('chutes')) || [];
+  <script>
+    let chutes = JSON.parse(localStorage.getItem('chutes')) || [];
+    const tbody = document.getElementById('tbodyChutes');
 
-        // Afficher les chutes dans le tableau
-        function afficherChutes() {
-            const tableChutes = document.getElementById('tableChutes').getElementsByTagName('tbody')[0];
-            tableChutes.innerHTML = '';  // Effacer les données précédentes
-            chutes.forEach(chute => {
-                const row = tableChutes.insertRow();
-                const cell1 = row.insertCell(0);
-                const cell2 = row.insertCell(1);
-                cell1.textContent = chute.longueur;
-                cell2.textContent = chute.quantite;
-            });
-        }
+    function render() {
+      tbody.innerHTML = '';
+      chutes.forEach(({ longueur, quantite }) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${longueur.toFixed(1)}</td><td>${quantite}</td>`;
+        tbody.appendChild(tr);
+      });
+      localStorage.setItem('chutes', JSON.stringify(chutes));
+    }
 
-        // Ajouter une chute
-        document.getElementById('formChute').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const longueur = parseFloat(document.getElementById('longueur').value);
-            const quantite = parseInt(document.getElementById('quantite').value);
-            
-            // Ajouter la chute dans le tableau
-            chutes.push({ longueur, quantite });
+    document.getElementById('formChute').addEventListener('submit', e => {
+      e.preventDefault();
+      const L = parseFloat(document.getElementById('longueur').value);
+      const Q = parseInt(document.getElementById('quantite').value);
+      chutes.push({ longueur: L, quantite: Q });
+      e.target.reset();
+      render();
+    });
 
-            // Sauvegarder les chutes dans le localStorage
-            localStorage.setItem('chutes', JSON.stringify(chutes));
-
-            // Réinitialiser le formulaire et afficher les nouvelles données
-            document.getElementById('formChute').reset();
-            afficherChutes();
-        });
-
-        // Afficher les chutes dès le chargement de la page
-        afficherChutes();
-    </script>
+    render();
+  </script>
 </body>
 </html>
