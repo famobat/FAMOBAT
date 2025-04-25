@@ -4,43 +4,78 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Famobat – Charpentes & Cabanes</title>
+  <!-- Bootstrap 5 -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
     rel="stylesheet"
   />
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+  <!-- Styles personnalisés -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <!-- NAVBAR -->
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-  <div class="container d-flex align-items-center">
-    <!-- Logo -->
-    <a class="navbar-brand me-4" href="#">
-      <img src="logo.png" alt="Famobat Logo" height="40">
-    </a>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container d-flex align-items-center">
+      <!-- Logo -->
+      <a class="navbar-brand me-4" href="#">
+        <img src="logo.png" alt="Famobat Logo" height="40" />
+      </a>
 
-    <!-- Coordonnées rapides -->
-    <div class="d-none d-lg-flex text-white me-auto">
-      <i class="bi bi-telephone-fill me-1"></i> 07 86 15 51 95  
-      <span class="mx-3">|</span>  
-      <i class="bi bi-envelope-fill me-1"></i> famobat@gmail.com
+      <!-- Coordonnées rapides -->
+      <div class="d-none d-lg-flex text-white me-auto">
+        <i class="bi bi-telephone-fill me-1"></i> 07 86 15 51 95
+        <span class="mx-3">|</span>
+        <i class="bi bi-envelope-fill me-1"></i> famobat@gmail.com
+      </div>
+
+      <!-- Toggle menu mobile -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#realisations">Réalisations</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#catalogue">Catalogue</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Menu classique -->
-    <button class="navbar-toggler" …></button>
-    <div class="collapse navbar-collapse" id="navMenu">
-      …
-    </div>
-  </div>
-</nav>
-
-
-  <!-- HERO -->
-  <header id="hero" class="py-5 text-center text-white bg-primary">
-    <div class="container">
-      <h1 class="display-4">Experts en charpentes & cabanes</h1>
-      <p class="lead">Conception, fabrication et pose sur mesure.</p>
-      <a href="#services" class="btn btn-light btn-lg mt-3">Nos services</a>
+  <!-- HERO avec vidéo -->
+  <header id="hero" class="position-relative">
+    <video autoplay muted loop class="w-100 vh-100 object-fit-cover">
+      <source src="cover.mp4" type="video/mp4" />
+      <!-- fallback image -->
+      <img
+        src="project1.png"
+        alt="Couverture Famobat"
+        class="w-100 vh-100 object-fit-cover"
+      />
+    </video>
+    <div class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center text-white">
+      <h1 class="display-4 fw-bold">Experts en charpentes & cabanes</h1>
+      <p class="lead">25 ans d’expérience – Consulting & Fabrication sur mesure</p>
+      <a href="#services" class="btn btn-light btn-lg mt-3">Découvrez nos services</a>
     </div>
   </header>
 
@@ -49,61 +84,23 @@
     <div class="container">
       <h2 class="mb-4 text-center">Nos Services</h2>
       <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Conception 3D</h5>
-              <p class="card-text">
-                Modélisation précise de vos structures dans un environnement 3D.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Fabrication sur mesure</h5>
-              <p class="card-text">
-                Charpentes, cabanes et ossatures en bois, réalisées dans nos ateliers.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body">
-              <h5 class="card-title">Pose & Montage</h5>
-              <p class="card-text">
-                Installation rapide et soignée de toutes vos structures bois.
-              </p>
-            </div>
-          </div>
-        </div>
+        <!-- cartes existantes… -->
       </div>
     </div>
   </section>
 
-  <!-- RÉALISATIONS -->
+  <!-- RÉALISATIONS (galerie) -->
   <section id="realisations" class="py-5 bg-light">
     <div class="container">
       <h2 class="mb-4 text-center">Nos Réalisations</h2>
       <div class="row g-3">
-        <!-- Exemple de galerie -->
         <div class="col-sm-6 col-lg-3">
-          <img
-            src="https://via.placeholder.com/400x300"
-            class="img-fluid rounded shadow-sm"
-            alt="Projet 1"
-          />
+          <img src="project1.png" class="img-fluid rounded shadow-sm" alt="Projet 1" />
         </div>
         <div class="col-sm-6 col-lg-3">
-          <img
-            src="https://via.placeholder.com/400x300"
-            class="img-fluid rounded shadow-sm"
-            alt="Projet 2"
-          />
+          <img src="project2.png" class="img-fluid rounded shadow-sm" alt="Projet 2" />
         </div>
-        <!-- … -->
+        <!-- ajoute plus d’images si besoin -->
       </div>
       <div class="text-center mt-4">
         <a href="configurator.html" class="btn btn-primary me-2">Cabane 3D</a>
@@ -111,7 +108,6 @@
       </div>
     </div>
   </section>
-  <!-- À insérer après la section Réalisations -->
 
   <!-- À PROPOS -->
   <section id="about" class="py-5 bg-white">
@@ -119,76 +115,49 @@
       <h2 class="mb-4 text-center">À propos de FAMOBAT</h2>
       <div class="row align-items-center">
         <div class="col-md-6">
-          <p>FAMOBAT, SARL fondée en mars 2021, est le spécialiste n°1 en fabrication de charpentes et cabanes sur mesure. Forte de plus de 25 ans d’expérience, l’équipe de 3 à 5 salariés accompagne tous vos projets : du consulting à la conception 3D, jusqu’à la pose sur site.</p>
+          <p>
+            FAMOBAT, SARL fondée en mars 2021, est le spécialiste n°1 en
+            fabrication de charpentes et cabanes sur mesure. Forte de plus de
+            25 ans d’expérience, l’équipe accompagn e tous vos projets :
+            consulting, conception 3D, fabrication et pose.
+          </p>
           <ul class="list-unstyled">
             <li><strong>Siège :</strong> 35 rue d’Arras, 59190 Hazebrouck</li>
             <li><strong>SIRET :</strong> 897 901 401 00017</li>
             <li><strong>TVA Intracom :</strong> FR53 897 901 401</li>
-            <li><strong>Code APE :</strong> 16.23Z</li>
+            <li><strong>Code APE / NAF :</strong> 16.23Z</li>
             <li><strong>Convention Collective :</strong> IDCC 1596</li>
           </ul>
         </div>
         <div class="col-md-6 text-center">
-          <img src="https://via.placeholder.com/500x350" alt="Équipe FAMOBAT" class="img-fluid rounded shadow-sm" />
+          <img
+            src="https://via.placeholder.com/500x350"
+            alt="Équipe Famobat"
+            class="img-fluid rounded shadow-sm"
+          />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CATALOGUE -->
-  <section id="catalogue" class="py-5 bg-light">
+  <!-- CATALOGUE PDF -->
+  <section id="catalogue" class="py-5 bg-light text-center">
     <div class="container">
-      <h2 class="mb-4 text-center">Catalogue de Réalisations</h2>
-      <div id="catalogueCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="https://via.placeholder.com/1200x600" class="d-block w-100" alt="Projet 1" />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Cabane 10 m²</h5>
-              <p>Modèle cosy en chêne massif.</p>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="https://via.placeholder.com/1200x600" class="d-block w-100" alt="Projet 2" />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Petite Maison</h5>
-              <p>Charpente traditionnelle revisitée.</p>
-            </div>
-          </div>
-          <!-- Ajoute autant d'items que nécessaire -->
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#catalogueCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#catalogueCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
-      </div>
+      <h2 class="mb-4">Téléchargez notre Catalogue</h2>
+      <a href="catalogue_famobat.pdf" class="btn btn-primary btn-lg" download>
+        Télécharger le PDF
+      </a>
     </div>
   </section>
 
-  <!-- CONSULTING -->
+  <!-- CONSULTING & CTA -->
   <section id="consulting" class="py-5 bg-white">
-    <div class="container">
-      <h2 class="mb-4 text-center">Consulting & Expertise</h2>
-      <p class="text-center mb-5">Profitez de notre savoir-faire pour optimiser vos projets bois, de la phase de conception à la maintenance.</p>
-      <div class="row g-4">
-        <div class="col-md-4 text-center">
-          <i class="bi bi-gear-fill display-4 text-primary"></i>
-          <h5 class="mt-3">Audit de Processus</h5>
-          <p>Analyse complète de votre chaîne de production.</p>
-        </div>
-        <div class="col-md-4 text-center">
-          <i class="bi bi-bar-chart-fill display-4 text-primary"></i>
-          <h5 class="mt-3">Optimisation</h5>
-          <p>Lean, Six Sigma et digitalisation 4.0.</p>
-        </div>
-        <div class="col-md-4 text-center">
-          <i class="bi bi-hammer display-4 text-primary"></i>
-          <h5 class="mt-3">Formations</h5>
-          <p>Ateliers pratiques sur TIA Portal, CATIA et plus.</p>
-        </div>
-      </div>
+    <div class="container text-center">
+      <h2>Consulting & Expertise</h2>
+      <p class="mb-4">
+        Audit, optimisation Lean-6σ et formations sur TIA Portal, CATIA…
+      </p>
+      <a href="#contact" class="btn btn-warning btn-lg">Demandez un devis gratuit</a>
     </div>
   </section>
 
@@ -199,42 +168,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <form id="contactForm" class="needs-validation" novalidate>
-            <div class="mb-3">
-              <label for="name" class="form-label">Nom</label>
-              <input
-                type="text"
-                id="name"
-                class="form-control"
-                placeholder="Votre nom"
-                required
-              />
-              <div class="invalid-feedback">Veuillez entrer votre nom.</div>
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input
-                type="email"
-                id="email"
-                class="form-control"
-                placeholder="Votre email"
-                required
-              />
-              <div class="invalid-feedback">Veuillez entrer une adresse valide.</div>
-            </div>
-            <div class="mb-3">
-              <label for="message" class="form-label">Message</label>
-              <textarea
-                id="message"
-                class="form-control"
-                rows="5"
-                placeholder="Votre message"
-                required
-              ></textarea>
-              <div class="invalid-feedback">Votre message ne peut pas être vide.</div>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">
-              Envoyer
-            </button>
+            <!-- champs… -->
           </form>
         </div>
       </div>
@@ -244,10 +178,21 @@
   <!-- FOOTER -->
   <footer class="py-4 bg-dark text-white text-center">
     <div class="container">
-      © 2025 Famobat. Tous droits réservés.
+      <p>© 2025 Famobat. Tous droits réservés.</p>
+      <p>
+        <i class="bi bi-telephone-fill"></i> 07 86 15 51 95
+        <span class="mx-2">|</span>
+        <i class="bi bi-envelope-fill"></i> famobat@gmail.com
+      </p>
     </div>
   </footer>
 
+  <!-- CTA Flottant -->
+  <a href="#contact" id="cta" class="btn btn-warning shadow-lg">
+    Demandez un devis
+  </a>
+
+  <!-- Scripts -->
   <script src="script.js"></script>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
