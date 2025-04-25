@@ -61,23 +61,33 @@
     </div>
   </nav>
 
-  <!-- HERO avec vidéo -->
-  <header id="hero" class="position-relative">
-    <video autoplay muted loop class="w-100 vh-100 object-fit-cover">
-      <source src="cover.mp4" type="video/mp4" />
-      <!-- fallback image -->
-      <img
-        src="project1.png"
-        alt="Couverture Famobat"
-        class="w-100 vh-100 object-fit-cover"
-      />
-    </video>
-    <div class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center text-white">
-      <h1 class="display-4 fw-bold">Experts en charpentes & cabanes</h1>
-      <p class="lead">25 ans d’expérience – Consulting & Fabrication sur mesure</p>
-      <a href="#services" class="btn btn-light btn-lg mt-3">Découvrez nos services</a>
-    </div>
-  </header>
+<!-- HERO avec vidéo -->
+<header id="hero" class="position-relative overflow-hidden">
+  <video
+    id="heroVideo"
+    class="w-100 vh-100 object-fit-cover"
+    autoplay
+    muted
+    loop
+    playsinline
+    poster="project1.png"
+  >
+    <source src="cover.mp4" type="video/mp4" />
+    <!-- Fallback image si la vidéo ne peut pas se lire -->
+    <img
+      src="project1.png"
+      alt="Couverture Famobat"
+      class="w-100 vh-100 object-fit-cover"
+    />
+  </video>
+
+  <div class="hero-overlay d-flex flex-column justify-content-center align-items-center text-center text-white">
+    <h1 class="display-4 fw-bold">Experts en charpentes & cabanes</h1>
+    <p class="lead">25 ans d’expérience – Consulting & Fabrication sur mesure</p>
+    <a href="#services" class="btn btn-light btn-lg mt-3">Découvrez nos services</a>
+  </div>
+</header>
+
 
   <!-- SERVICES -->
   <section id="services" class="py-5">
