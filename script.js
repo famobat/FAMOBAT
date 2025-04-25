@@ -1,4 +1,14 @@
 // script.js
+// ajout au début du script.js
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.service-card').forEach((card, idx) => {
+    card.style.opacity = 0;
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.6s ease-out';
+      card.style.opacity = 1;
+    }, idx * 150);
+  });
+});
 
 // Bootstrap form validation
 (() => {
