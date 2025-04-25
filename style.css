@@ -58,3 +58,21 @@ a.nav-link:hover {
   right: 20px;
   z-index: 999;
 }
+/* service-card : légère montée au hover */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+}
+
+/* icônes plus grandes et colorées */
+.service-card .bi {
+  font-size: 2.5rem;
+}
+
+/* ajustement de l’espacement général */
+#services .card-body {
+  padding: 2rem;
+}
