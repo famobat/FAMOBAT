@@ -91,15 +91,3 @@ a.nav-link:hover {
   width: 100%;
   object-fit: cover;
 }
-/* Agrandissement du logo */
-.logo-large {
-  height: 60px;    /* ajuster la hauteur */
-  width: auto;
-  transition: height 0.3s ease;
-}
-@media (max-width: 576px) {
-  .logo-large {
-    height: 50px;  /* responsive sur mobile */
-  }
-}
-
