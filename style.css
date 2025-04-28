@@ -84,8 +84,10 @@ a.nav-link:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Taille uniforme des images */
+/* Taille uniforme des images de services */
 .service-card .card-img-top {
-  height: 200px;
+  /* Forcer un ratio 4:3 par exemple */
+  aspect-ratio: 4 / 3;
+  width: 100%;
   object-fit: cover;
 }
