@@ -66,13 +66,26 @@ a.nav-link:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
+/* animation d’apparition */
+.service-card {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-in-out forwards;
+}
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+.service-card:nth-child(6) { animation-delay: 0.6s; }
 
-/* icônes plus grandes et colorées */
-.service-card .bi {
-  font-size: 2.5rem;
+/* fadeIn keyframes (si pas déjà présent) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* ajustement de l’espacement général */
-#services .card-body {
-  padding: 2rem;
+/* Taille uniforme des images */
+.service-card .card-img-top {
+  height: 200px;
+  object-fit: cover;
 }
