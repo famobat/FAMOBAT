@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://famobat.github.io/FAMOBAT/sitemap.xml
