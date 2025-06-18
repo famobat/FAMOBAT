@@ -32,46 +32,29 @@
 
   <!-- ========== STRUCTURED DATA (LocalBusiness + FAQ) ======================== -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "FAMOBAT",
-    "url": "https://famobat.github.io/FAMOBAT/",
-    "logo": "https://famobat.github.io/FAMOBAT/logo.png",
-    "image": "https://famobat.github.io/FAMOBAT/logo.png",
-    "description": "Charpentes, cabanes, terrasses et carports sur-mesure à Hazebrouck (59).",
-    "telephone": "+33-786-155-195",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "35 rue d’Arras",
-      "addressLocality": "Hazebrouck",
-      "postalCode": "59190",
-      "addressCountry": "FR"
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quel est le délai moyen pour la pose d'une charpente ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nous posons la plupart des charpentes sous 4 à 6 semaines après validation du devis."
+      }
     },
-    "areaServed": "Nord-Pas-de-Calais",
-    "foundingDate": "2000",
-    "sameAs": [
-      "https://www.facebook.com/TA_PAGE",
-      "https://www.linkedin.com/company/famobat"
-    ],
-    "mainEntity": {
-      "@type": "FAQPage",
-      "name": "Questions fréquentes FAMOBAT",
-      "acceptedAnswer": [
-        {
-          "@type": "Question",
-          "name": "Quel est le délai moyen pour la pose d'une charpente ?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nous posons la plupart des charpentes sous 4 à 6 semaines après validation du devis." }
-        },
-        {
-          "@type": "Question",
-          "name": "Intervenez-vous en dehors du Nord-Pas-de-Calais ?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Oui, pour les projets supérieurs à 40 m², nous nous déplaçons dans toute la région Hauts-de-France." }
-        }
-      ]
+    {
+      "@type": "Question",
+      "name": "Intervenez-vous en dehors du Nord-Pas-de-Calais ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, pour les projets supérieurs à 40 m², nous nous déplaçons dans toute la région Hauts-de-France."
+      }
     }
-  }
-  </script>
+  ]
+}
+</script>
 
   <!-- ========== CSS & ICONS =================================================== -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
